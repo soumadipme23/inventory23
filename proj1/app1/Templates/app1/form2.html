@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/1st.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/form.css' %}">
+	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="{% static 'lightbox.min.css' %}">
+	<script src="{% static 'js/lightbox-plus-jquery.min.js' %}"></script>
+</head>
+<body>
+
+	<section id="nav-bar" class="about">
+		<nav class="navbar navbar-expand-lg navbar-light">
+  <a class="navbar-brand" href="index.html"><img src="{% static 'image/images.png' %}" alt="logo"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <i class="fa fa-snowflake-o" aria-hidden="true"></i>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto  nav-pills">
+      <li class="nav-item">
+        <a class="nav-link" href="/home">HOME<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link bg-danger" href="/form">FORM</a>
+      </li>
+
+
+      <li class="nav-item">
+        <a class="nav-link" href="/inventory">INVENTORY</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/about">ABOUT</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/logout">LOGOUT</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+</section>
+<div id="f_details">
+<form id="form_details" action="/submit/">
+
+  <div class="group"> <br>     
+    <input type="text" name="name" value="{{name}}" readonly>
+    <span class="highlight"></span>
+    <span class="bar"></span>
+    <label>Faculty Name</label>
+  </div>
+
+  <div class="group">      
+    <input type="text" name="code" require>
+    <span class="highlight"></span>
+    <span class="bar"></span>
+    <label>Paper code </code></label>
+  </div>
+
+  <div class="group">
+      <input type="text" name="item" require>
+      <span class="highlight"></span>
+      <span class="bar"></span>
+      <label>Item</label>
+    </div>
+
+
+    <div class="group">
+      <span>Category:</span>
+      <select name="category" id="" class="">
+      <option value="Mechanical Workshop">Mechanical Workshop</option>
+      <option value="Material Testing">Material Testing</option>
+      <option value="Rac Lab">Rac Lab</option>
+      <option value="Computer Lab">Computer Lab</option>
+      <option value="Dynamics Lab">Dynamics Lab</option>
+      <option value="Faculty Room">Faculty Room</option>
+    </select>
+
+
+</div>
+    <div class="group">      
+      <input type="number" name="total" required>
+      <span class="highlight"></span>
+      <span class="bar"></span>
+      <label>Total Quantity Required</label>
+    </div>
+
+    <div class="group">      
+      <input type="number" name="stock" required>
+      <span class="highlight"></span>
+      <span class="bar"></span>
+      <label>Quantity in Stock</label>
+    </div>
+
+    <div class="group">      
+        <input type="text" name="vendor" required>
+        <span class="highlight"></span>
+        <span class="bar"></span>
+        <label>Vendor</label>
+      </div>
+
+      <div class="group">      
+        <input type="number" name="price" required>
+        <span class="highlight"></span>
+        <span class="bar"></span>
+        <label>Total Price</label>
+      </div>
+      <div class="group"> <br>     
+        <input type="date" name="date" required>
+        <span class="highlight"></span>
+        <span class="bar"></span>
+        <label>Date of Requirement</label>
+      </div>
+
+
+      <div class="group">      
+        <input type="text" name="des" required>
+        <span class="highlight"></span>
+        <span class="bar"></span>
+        <label>Item Description</label>
+      </div>
+
+      <div class="group">      
+        <input type="text" name="jus" required>
+        <span class="highlight"></span>
+        <span class="bar"></span>
+        <label>Justification for new Quantity</label>
+      </div>
+    
+      <div class="stage row">
+        <div class="row"><button class="btn" formaction="/form2/">Add Another</button></div>
+        <div class="col"><button class="btn">Submit</button>  </div>
+      </div>
+    
+  </form>
+</div>
+</section>
+
+
+
+<footer id="footer">
+  <div class="footer-bottom bg-secondary">
+    <div class="text-right container py-1">
+            <p>
+                Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved
+            </p>
+    </div>
+</div>
+	
+</footer>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

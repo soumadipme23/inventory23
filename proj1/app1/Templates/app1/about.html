@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+  <title>About Page</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/nav.css' %}">
+  <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+  <section id="nav-bar" class="about">
+    <nav class="navbar navbar-expand-lg navbar-light">
+  <a class="navbar-brand" href="index.html"><img src="{% static 'image/images.png' %}" alt="logo"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <i class="fa fa-snowflake-o" aria-hidden="true"></i>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto  nav-pills">
+      {% if user.is_authenticated %}
+      <li class="nav-item">
+        <a class="nav-link" href="/home/">HOME<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/form">FORM</a>
+      </li>
+
+
+      <li class="nav-item">
+        <a class="nav-link" href="/inventory">INVENTORY</a>
+      </li>
+      <li class="nav-item">
+    
+      {% else %}
+      <li class="nav-item">
+        <a class="nav-link" href="/">LOG IN</a>
+      </li>
+      
+      {% endif %}
+      <li class="nav-item active-item">
+        <a class="nav-link" href="">ABOUT</a>
+      </li>
+
+      {% if user.is_authenticated %}
+      <li class="nav-item">
+        <a class="nav-link" href="/logout">LOGOUT</a>
+      </li>
+      {% endif %}
+    </ul>
+  </div>
+</nav>
+</section>
+
+  <div class="container py-3">
+     <h5>This module has been developed by 4th year Mechanical Engineering
+       students (2019-23 batch) of TECHNO MAIN SALT LAKE,  as a part of the final year project.</h5>
+    </div> 
+   <div class="main-container">
+    <div class="main">
+      <img src="{% static 'image/pic1.jpg' %}" alt="img not found">
+      <h1>Subham Mondal</h1>
+    </div>
+    <div class="main">
+      <img src="{% static 'image/pic2.jpg' %}" alt="img not found">
+      <h1> Debrup Saha</h1>
+    </div>
+    <div class="main">
+      <img src="{% static 'image/pic3.jpg' %}" alt="img not found">
+      <h1> Shankha Chatterjee</h1>
+    </div>
+  </div>
+   <div class="main-container">
+    <div class="main">
+      <img src="{% static 'image/pic4.jpg' %}" alt="img not found">
+      <h1> Ankit Dash</h1>
+    </div>
+    <div class="main">
+      <img src="{% static 'image/pic5.jpg' %}" alt="img not found">
+      <h1> Soumadip Adak</h1>
+    </div>
+    <div class="main">
+      <img src="{% static 'image/pic6.jpg' %}" alt="img not found">
+      <h1> Avijit Singha</h1>
+    </div>
+  </div>
+  <div class="container py-3">
+    <h2 class="solve">Project Description</h2>
+    <p class="p-solve">Enterprise Resource Planning (ERP) software has over the years proved to be an extremely beneficial and effective tool.
+    An ERP software also takes care of another vital area of any manufacturing business – supply-chain management.
+    In today’s age of digital transformation, more and more businesses are taking advantage of the benefits of enterprise resource planning software (ERP software). In fact, most businesses can’t afford to pass up on the automation, integration, and efficiencies offered by a fully integrated business management platform
+    The material management module eases the entire Supply Chain Management process for any manufacturing industry.
+  </p>
+  <p class="p-solve">
+    So it is very important to construct such economically viable software which will help the small manufacturing industry as well as other sector where material management module is made in the form 
+    of e-commerce cite.
+  </p>
+  <p class="p-solve">
+    This site consists of various parts including front-end and back-end deevelopment which includes various pages for various activities such as
+    <ul>
+      <li>Login page</li>
+      <li>Inventory page</li>
+      <li>Form page</li>
+      <li>About page</li>
+    </ul>
+  </p>
+
+
+
+  <p class="p-solve">
+    We have also used  recent technology like HTML,CSS and JS for front-end and Python and Django for back end services to make the site operate smoothly and efficiently.
+  </p>
+  </div> 
+  <footer id="footer">
+    <div class="footer-bottom bg-secondary">
+      <div class="text-right container py-1">
+              <p>
+                  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved
+              </p>
+      </div>
+  </div>
+    
+  </footer>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

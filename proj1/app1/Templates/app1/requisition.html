@@ -1,0 +1,122 @@
+﻿<!DOCTYPE html>
+{% load static %}
+<html>
+  <head>
+    <title>Requisition Form</title>
+    <style>
+      /* CSS styles */
+      table {
+        border: 1px solid;
+        border-collapse: collapse;
+        width: 100%;
+      }
+      th, td {
+        border: 1px solid;
+        text-align: left;
+        padding: 10px;
+        border-color: #96D4D4;
+      }
+      th {
+        background-color: #0077b6;
+        color: white;
+      }
+      tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+      input[type=text], textarea {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+        resize: vertical;
+      }
+      button[type=submit] {
+        background-color: #32CD32;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      button[type=submit]:hover {
+        background-color: #008000;
+      }
+      .signature-box {
+        display: inline-block;
+        margin-right: 20px;
+        border: 1px solid #ccc;
+        padding: 5px;
+      }
+      .signature-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin-top: 20px;
+      }
+      .signature-box + .signature-box {
+        margin-left: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    
+    <h1>Requisition Form</h1>
+    <h2>Techno Main Saltlake</h2>
+    <form action="/save_print">
+      <label>FacultyName:</label>
+      <input type="text" value="{{name}}" readonly><br><br>
+      <label>Department:</label>
+      <input type="text" value="Mechanical Engineering" readonly><br><br>
+      <label>Paper Code/Subject:</label>
+      <input type="text" value="{%for i in data %}{{i.code}},    {% endfor%}" readonly><br><br>
+      <table >
+        <tr>
+          <th>SL No.</th>
+          <th>Item </th>
+          <th>Specifications/ Description</th>
+          <th>Total Quantity Required</th>
+          <th>Quantity in Stock</th>
+          <th>New Quantity Required</th>
+          <th>Vendor</th>
+          <th>Justification for New Quantity</th>
+          <th>DOR</th>
+        </tr>
+        {% for i in data %}
+        <tr style="height:50px">
+          <td>{{forloop.counter}}</td>
+          <td>{{i.item}}</td>
+          <td>{{i.des}}</td>
+          <td>{{i.total}}</td>
+          <td>{{i.stock}}</td>
+          <td>{{i.quantity}}</td>
+          <td>{{i.vendor}}</td>
+          <td>{{i.jus}}</td>
+          <td>{{i.date}}</td>
+        </tr>
+        {% endfor %}
+      </table>
+      <div class="signature-container">
+        <span class="signature-box">
+          Lab Workshop In Charge Signature: <br>
+          <input type="text" name="lab_incharge_signature" readonly><br>
+          Date: <input type="text" name="lab_incharge_date">
+        </span>
+        <span class="signature-box">
+          H.O.D Signature: <br>
+          <input type="text" name="hod_signature" readonly><br>
+        </span>
+        <span class="signature-box">
+          Principal Signature: <br>
+          <input type="text" name="principal_signature" readonly><br>
+        </span>
+      </div>
+      <button type="submit" onclick="window.print()">Save & Print</button>
+
+      </form>
+  <script>
+
+</script>
+      </body>
+      </html>

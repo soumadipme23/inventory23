@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+	<meta charset="utf-8"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>ERP Lite</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/nav.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
+	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="{% static 'lightbox.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/jquery.dataTables.min.css' %}">
+	<script src="{% static 'js/lightbox-plus-jquery.min.js' %}"></script>
+</head>
+<body>
+	<section id="nav-bar" class="about">
+		<nav class="navbar navbar-expand-lg navbar-light">
+  <a class="navbar-brand" href="index.html"><img src="{% static 'image/images.png' %}" alt="logo"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <i class="fa fa-snowflake-o" aria-hidden="true"></i>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto  nav-pills">
+      <li class="nav-item">
+        <a class="nav-link  bg-danger" href="/home">HOME<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/form">FORM</a>
+      </li>
+
+
+      <li class="nav-item">
+        <a class="nav-link" href="/inventory">INVENTORY</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/about">ABOUT</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/logout">LOGOUT</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+</section>
+
+<section id="latest">
+  <div class="container">
+  <div class="row gallery">
+    <div class="col-lg-3 text-center">
+      <div><div class="part-1" id="mw">
+        <img src="{% static 'image/img.f3.jpg' %}"  class="picture rounded">
+        <h1>MECHANICAL WORKSHOP</h1>
+      </div>
+    </div>
+    </div>
+    <div class="col-lg-3 text-center">
+      <div><div class="part-1" id="mt">
+        <img src="{% static 'image/image.f3.webp' %}"  class="picture rounded">
+        <h1>MATERIAL TESTING</h1>
+      </div>
+    </div>
+    </div>
+    <div class="col-lg-3 text-center">
+      <div><div class="part-1" id="rac">
+        <img src="{% static 'image/image.f4.jfif' %}"  class="picture rounded">
+        <h1>RAC LAB</h1>
+      </div>
+    </div>
+    </div>
+    <div class="col-lg-3 text-center">
+      <div><div class="part-1" id="computer">
+        <img src="{% static 'image/img.f2.jpg' %}"  class="picture rounded">
+        <h1>COMPUTER LAB</h1>
+      </div>
+    </div>
+    </div>
+    <div class="col-lg-3 text-center">
+      <div><div class="part-1" id="dynamic">
+        <img src="{% static 'image/image.f1.webp' %}"  class="picture rounded">
+        <h1>DYNAMICS LAB</h1>
+       
+      </div>
+    </div>
+    </div>
+    <div class="col-lg-3 text-center">
+      <div><div class="part-1"  id="faculty">
+        <img src="{% static 'image/img.f4.jpg' %}"  class="picture rounded">
+        <h1>FACULTY ROOM</h1>
+        
+      </div>
+    </div>
+    </div>
+  </div>
+  </div>
+  </section>
+<div class="container">
+    <div class="row">
+        <div id="askModal" class="modal fade col-5 offset-md-4" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="content">
+                <div class="modal-content">
+                    <div class="modal-header  bg-warning"><h5>MECHANICAL WORKSHOP</h5>
+                        <button type="button" class="close" data-dismiss="modal">
+                            &times;
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="data-table-area">
+                        
+                        
+                            <input type="text" id="myInput-mw" onkeyup="search_mw()" placeholder="Search for items..">
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="data-table-list">                                       
+                                        <div class="table-responsive">
+                                            <table id="data-table-basic-mw" class="table table-striped">
+                                                <thead class="thead-light">
+                                                    
+                                                    <tr>
+                                                        <th>Item</th>
+                                                        <th>Stock</th>
+                                                        <th>Last DOI</th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr id="first" class="datainput">
+                                                        <form action="/add_item/">
+                                                        <input type = "hidden" name = "category" value = "Mechanical Workshop"/>
+                                                        <th><input type="text" name="item" size="5" required></th>
+                                                      
+                                                        <th><input type="number" id="quantity" name="stock" min="1" max="100" required></th>
+                                                        <th><input type="date" id="Last_DOI" name="Last_DOI" required></th>
+                                                        <th><button class="btn" id="update">&nbsp;Add &nbsp;</button></th>
+                                                    </form> 
+                                                    </tr>                                             
+                                                    {% for i in data %}
+                                                {% if i.category == 'Mechanical Workshop' %}
+                                                  <tr id="first"> 
+                                                  <form action="/update/">
+                                                                                                      
+                                                  <td>{{i.item}}</td>
+                                                  <input type = "hidden" name = "id" value = "{{i.id}}"/>
+                                                  <input type = "hidden" name = "category" value = "Mechanical Workshop"/>     
+                                                  <th><input type="number" name="stock" value="{{i.stock}}" min="0" max="100"></th>
+                                                  <th><input type="date" name= "Last_DOI" value="{{i.doi|date:'Y-m-d'}}"/></th>
+                                                  <th><button class="btn" id="update">Update</button></th>
+                                                  </form>
+                                                  </tr>
+                                                  {% endif %}{% endfor %}
+                                                </tbody>                                                                  
+                                                </tfoot>
+                                            </table>
+                                        </div>
+                                    </div>
+                             
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container">
+  <div class="row">
+      <div id="mtModal" class="modal fade col-5 offset-md-4" tabindex="-1" role="dialog">
+          <div class="modal-dialog modal-lg" role="content">
+              <div class="modal-content">
+                  <div class="modal-header  bg-warning"><h5>MATERIAL TESTING</h5>
+                      <button type="button" class="close" data-dismiss="modal">
+                          &times;
+                      </button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="data-table-area">
+                      
+                      
+                          <input type="text" id="myInput-mt" onkeyup="search_mt()" placeholder="Search for items..">
+                          <div class="row">
+                              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                  <div class="data-table-list">                                       
+                                      <div class="table-responsive">
+                                          <table id="data-table-basic-mt" class="table table-striped">
+                                              <thead class="thead-light">
+                                                  
+                                                  <tr>
+                                                      <th>Item</th>
+                                                      <th>Stock</th>
+                                                      <th>Last DOI</th>
+                                                      <th></th>
+                                                  </tr>
+                                              </thead>
+                                              <tbody>
+                                                  <tr id="first" class="datainput">
+                                                      <form action="/add_item/">
+                                                      <input type = "hidden" name = "category" value = "Material Testing"/>
+                                                      <th><input type="text" name="item" size="5" required></th>
+                                                    
+                                                      <th><input type="number" id="quantity" name="stock" min="1" max="100" required></th>
+                                                      <th><input type="date" id="Last_DOI" name="Last_DOI" required></th>
+                                                      <th><button class="btn" id="update">&nbsp;Add &nbsp;</button></th>
+                                                  </form> 
+                                                  </tr>
+                                                  {% for i in data %}
+                                              {% if i.category == 'Material Testing' %}
+                                                <r id="first"> 
+                                                <form action="/update/">
+                                                                                                    
+                                                <td>{{i.item}}</td>
+                                                <input type = "hidden" name = "id" value = "{{i.id}}"/>
+                                                <input type = "hidden" name = "category" value = "Material Testing"/>     
+                                                <th><input type="number" name="stock" value="{{i.stock}}" min="0" max="100"></th>
+                                                <th><input type="date" name= "Last_DOI" value="{{i.doi|date:'Y-m-d'}}"/></th>
+                                                <th><button class="btn" id="update">Update</button></th>
+                                                </form>
+                                                </tr>
+                                                {% endif %}{% endfor %}
+                                              </tbody>                                                                  
+                                              </tfoot>
+                                          </table>
+                                      </div>
+                                  </div>
+                           
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+      <div id="racModal" class="modal fade col-5 offset-md-4" tabindex="-1" role="dialog">
+          <div class="modal-dialog modal-lg" role="content">
+              <div class="modal-content">
+                  <div class="modal-header  bg-warning"><h5>RAC LAB</h5>
+                      <button type="button" class="close" data-dismiss="modal">
+                          &times;
+                      </button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="data-table-area">
+                      
+                      
+                          <input type="text" id="myInput-rac" onkeyup="search_rac()" placeholder="Search for items..">
+                          <div class="row">
+                              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                  <div class="data-table-list">                                       
+                                      <div class="table-responsive">
+                                          <table id="data-table-basic-rac" class="table table-striped">
+                                              <thead class="thead-light">
+                                                  
+                                                  <tr>
+                                                      <th>Item</th>
+                                                      <th>Stock</th>
+                                                      <th>Last DOI</th>
+                                                      <th></th>
+                                                  </tr>
+                                              </thead>
+                                              <tbody>
+                                                  <tr id="first" class="datainput">
+                                                      <form action="/add_item/">
+                                                      <input type = "hidden" name = "category" value = "RAC LAB"/>
+                                                      <th><input type="text" name="item" size="5" required></th>
+                                                    
+                                                      <th><input type="number" id="quantity" name="stock" min="1" max="100" required></th>
+                                                      <th><input type="date" id="Last_DOI" name="Last_DOI" required></th>
+                                                      <th><button class="btn" id="update">&nbsp;Add &nbsp;</button></th>
+                                                  </form> 
+                                                  </tr>
+                                               {% for i in data %}
+                                              {% if i.category == 'RAC LAB' %}
+                                                <tr id="first"> 
+                                                <form action="/update/">
+                                                                                                    
+                                                <td>{{i.item}}</td>
+                                                <input type = "hidden" name = "id" value = "{{i.id}}"/>
+                                                <input type = "hidden" name = "category" value = "RAC LAB"/>     
+                                                <th><input type="number" name="stock" value="{{i.stock}}" min="0" max="100"></th>
+                                                <th><input type="date" name= "Last_DOI" value="{{i.doi|date:'Y-m-d'}}"/></th>
+                                                <th><button class="btn" id="update">Update</button></th>
+                                                </form>
+                                                </tr>
+                                                {% endif %}{% endfor %}
+                                              </tbody>                                                                  
+                                              </tfoot>
+                                          </table>
+                                      </div>
+                                  </div>
+                           
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+      <div id="computerModal" class="modal fade col-5 offset-md-4" tabindex="-1" role="dialog">
+          <div class="modal-dialog modal-lg" role="content">
+              <div class="modal-content">
+                  <div class="modal-header  bg-warning"><h5>COMPUTER LAB</h5>
+                      <button type="button" class="close" data-dismiss="modal">
+                          &times;
+                      </button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="data-table-area">
+                      
+                      
+                          <input type="text" id="myInput-com" onkeyup="search_com()" placeholder="Search for items..">
+                          <div class="row">
+                              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                  <div class="data-table-list">                                       
+                                      <div class="table-responsive">
+                                          <table id="data-table-basic-com" class="table table-striped">
+                                              <thead class="thead-light">
+                                                  
+                                                  <tr>
+                                                      <th>Item</th>
+                                                      <th>Stock</th>
+                                                      <th>Last DOI</th>
+                                                      <th></th>
+                                                  </tr>
+                                              </thead>
+                                              <tbody>
+                                                  <tr id="first" class="datainput">
+                                                      <form action="/add_item/">
+                                                      <input type = "hidden" name = "category" value = "Computer Lab"/>
+                                                      <th><input type="text" name="item" size="5" required></th>
+                                                    
+                                                      <th><input type="number" id="quantity" name="stock" min="1" max="100" required></th>
+                                                      <th><input type="date" id="Last_DOI" name="Last_DOI" required></th>
+                                                      <th><button class="btn" id="update">&nbsp;Add &nbsp;</button></th>
+                                                  </form> 
+                                                  </tr>
+                                               {% for i in data %}
+                                              {% if i.category == 'Computer Lab' %}
+                                                <tr id="first"> 
+                                                <form action="/update/">
+                                                                                                    
+                                                <td>{{i.item}}</td>
+                                                <input type = "hidden" name = "id" value = "{{i.id}}"/>
+                                                <input type = "hidden" name = "category" value = "Computer Lab"/>     
+                                                <th><input type="number" name="stock" value="{{i.stock}}" min="0" max="100"></th>
+                                                <th><input type="date" name= "Last_DOI" value="{{i.doi|date:'Y-m-d'}}"/></th>
+                                                <th><button class="btn" id="update">Update</button></th>
+                                                </form>
+                                                </tr>
+                                                {% endif %}{% endfor %}
+                                              </tbody>                                                                  
+                                              </tfoot>
+                                          </table>
+                                      </div>
+                                  </div>
+                           
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+      <div id="dynamicModal" class="modal fade col-5 offset-md-4" tabindex="-1" role="dialog">
+          <div class="modal-dialog modal-lg" role="content">
+              <div class="modal-content">
+                  <div class="modal-header  bg-warning"><h5>DAYNAMICS LAB</h5>
+                      <button type="button" class="close" data-dismiss="modal">
+                          &times;
+                      </button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="data-table-area">
+                      
+                      
+                          <input type="text" id="myInput-dy" onkeyup="search_dy()" placeholder="Search for items..">
+                          <div class="row">
+                              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                  <div class="data-table-list">                                       
+                                      <div class="table-responsive">
+                                          <table id="data-table-basic-dy" class="table table-striped">
+                                              <thead class="thead-light">
+                                                  
+                                                  <tr>
+                                                      <th>Item</th>
+                                                      <th>Stock</th>
+                                                      <th>Last DOI</th>
+                                                      <th></th>
+                                                  </tr>
+                                              </thead>
+                                              <tbody>
+                                                  <tr id="first" class="datainput">
+                                                      <form action="/add_item/">
+                                                      <input type = "hidden" name = "category" value = "Daynamics Lab"/>
+                                                      <th><input type="text" name="item" size="5" required></th>
+                                                    
+                                                      <th><input type="number" id="quantity" name="stock" min="1" max="100" required></th>
+                                                      <th><input type="date" id="Last_DOI" name="Last_DOI" required></th>
+                                                      <th><button class="btn" id="update">&nbsp;Add &nbsp;</button></th>
+                                                  </form> 
+                                                  </tr>
+                                               {% for i in data %}
+                                              {% if i.category == 'Daynamics Lab' %}
+                                                <tr id="first"> 
+                                                <form action="/update/">
+                                                                                                    
+                                                <td>{{i.item}}</td>
+                                                <input type = "hidden" name = "id" value = "{{i.id}}"/>
+                                                <input type = "hidden" name = "category" value = "Daynamics Lab"/>     
+                                                <th><input type="number" name="stock" value="{{i.stock}}" min="0" max="100"></th>
+                                                <th><input type="date" name= "Last_DOI" value="{{i.doi|date:'Y-m-d'}}"/></th>
+                                                <th><button class="btn" id="update">Update</button></th>
+                                                </form>
+                                                </tr>
+                                                {% endif %}{% endfor %}
+                                              </tbody>                                                                  
+                                              </tfoot>
+                                          </table>
+                                      </div>
+                                  </div>
+                           
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+      <div id="facultyModal" class="modal fade col-5 offset-md-4" tabindex="-1" role="dialog">
+          <div class="modal-dialog modal-lg" role="content">
+              <div class="modal-content">
+                  <div class="modal-header  bg-warning"><h5>FACULTY ROOM</h5>
+                      <button type="button" class="close" data-dismiss="modal">
+                          &times;
+                      </button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="data-table-area">
+                      
+                      
+                          <input type="text" id="myInput-fac" onkeyup="search_fac()" placeholder="Search for items..">
+                          <div class="row">
+                              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                  <div class="data-table-list">                                       
+                                      <div class="table-responsive">
+                                          <table id="data-table-basic-fac" class="table table-striped">
+                                              <thead class="thead-light">
+                                                  
+                                                  <tr>
+                                                      <th>Item</th>
+                                                      <th>Stock</th>
+                                                      <th>Last DOI</th>
+                                                      <th></th>
+                                                  </tr>
+                                              </thead>
+                                              <tbody>
+                                                  <tr id="first" class="datainput">
+                                                      <form action="/add_item/">
+                                                      <input type = "hidden" name = "category" value = "Faculty Room"/>
+                                                      <th><input type="text" name="item" size="5" required></th>
+                                                    
+                                                      <th><input type="number" id="quantity" name="stock" min="1" max="100" required></th>
+                                                      <th><input type="date" id="Last_DOI" name="Last_DOI" required></th>
+                                                      <th><button class="btn" id="update">&nbsp;Add &nbsp;</button></th>
+                                                  </form> 
+                                                  </tr>
+                                               {% for i in data %}
+                                              {% if i.category == 'Faculty Room' %}
+                                                <tr id="first"> 
+                                                <form action="/update/">
+                                                                                                    
+                                                <td>{{i.item}}</td>
+                                                <input type = "hidden" name = "id" value = "{{i.id}}"/>
+                                                <input type = "hidden" name = "category" value = "Faculty Room"/>     
+                                                <th><input type="number" name="stock" value="{{i.stock}}" min="0" max="100"></th>
+                                                <th><input type="date" name= "Last_DOI" value="{{i.doi|date:'Y-m-d'}}"/></th>
+                                                <th><button class="btn" id="update">Update</button></th>
+                                                </form>
+                                                </tr>
+                                                {% endif %}{% endfor %}
+                                              </tbody>                                                                  
+                                              </tfoot>
+                                          </table>
+                                      </div>
+                                  </div>
+                           
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      </div>
+  </div>
+</div>
+
+<footer id="footer">
+  <div class="footer-bottom bg-secondary">
+    <div class="text-right container py-1">
+            <p>
+                Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved
+            </p>
+    </div>
+</div>
+	
+</footer>
+
+  
+    
+    
+ <script>
+  $(document).ready(function(){
+  $('#mw').click(function(){
+  $('#askModal').modal('show');
+  });
+})
+</script>
+<script>
+$(document).ready(function(){
+  $('#mt').click(function(){
+  $('#mtModal').modal('show');
+  });
+})</script>
+<script>
+  $(document).ready(function(){
+  $('#rac').click(function(){
+  $('#racModal').modal('show');
+  });
+})
+</script>
+<script>
+$(document).ready(function(){
+  $('#computer').click(function(){
+  $('#computerModal').modal('show');
+  });
+})</script>
+<script>
+  $(document).ready(function(){
+  $('#dynamic').click(function(){
+  $('#dynamicModal').modal('show');
+  });
+})
+</script>
+<script>
+$(document).ready(function(){
+  $('#faculty').click(function(){
+  $('#facultyModal').modal('show');
+  });
+})</script>
+<script>
+  $(document).ready(function(){
+    $('#update').click(function(){
+    $('#passModal').modal('show');
+    });
+  })</script>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="{% static 'js/data-table/data-table-act.js' %}"></script>
+<script src="{% static 'js/home_search.js' %}"></script>
+</body>
+</html>

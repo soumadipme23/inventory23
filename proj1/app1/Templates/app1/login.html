@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/nav.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Piedra&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <title>Log In</title>
+</head>
+<body>
+    <section id="nav-bar" class="about">
+		<nav class="navbar navbar-expand-lg navbar-light">
+  <a class="navbar-brand" href="index.html"><img src="{% static 'image/images.png' %}" alt="logo"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <i class="fa fa-snowflake-o" aria-hidden="true"></i>
+  </button>
+  <ul class="navbar-nav ml-auto  nav-pills">
+    <li class="nav-item">
+        <a class="nav-link" href="/about">ABOUT</a>
+      </li>
+  </ul>
+
+</nav>
+</section>
+    
+    
+    <section class="pt-5 container">
+        <div class="row shadow bg-white rounded" style="background-image: url('{% static 'image/banner.jpeg' %}')">
+            
+            <div class="col-lg-6 p-auto text-center" id="bd">
+
+                    <div class="p-4"></div>
+                    <form action="/loginvalidation/" class="p-5" method="POST">
+                        {% csrf_token %}
+                        <div class="col-md-12 form-group">
+                            <input type="text" class="form-control" id="name" name="name" placeholder="UserID"
+                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'UserID'">
+                        </div>
+                       
+                        <div class="col-md-12 form-group">
+                            <input type="password" class="form-control" id="name" name="password" placeholder="Password"
+                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
+                        </div>
+                        
+                        <div class="col-md-12 form-group text-left">
+                                <input type="checkbox" name="selector">
+                                <label for="f-option2">Keep me logged in</label>
+                        </div>
+                        <div class="col-md-12 mb-5 form-group">
+                            <button type="submit" value="submit" class="w-100 btn btn-primary">Log In</button>
+                            {% if mess  %}
+                    <div class="alert alert-danger" role="alert">
+                     {{mess}}
+                    </div>
+                {%  endif  %}
+                        </div>
+                    </form>
+
+            </div>
+        
+        </div>
+
+</section>
+
+<footer class="pt-5 text-white" id="footer">
+ 
+
+    <div class="footer-bottom bg-secondary">
+        <div class="text-right container py-1">
+                <p>
+                    Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved
+                </p>
+        </div>
+    </div>
+</footer>
+
+            <script type="text/javascript">
+
+        $(document).ready(function () {
+
+                window.setTimeout(function() {
+                    $(".alert").fadeTo("slow", 0).slideUp(100, function(){
+                        $(this).remove();
+                    });
+                }, 2000);
+
+        });
+    </script>
+</body>
+</html>
